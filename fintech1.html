@@ -45,6 +45,10 @@ section { padding: 30px 0; }
 .counter-box .counter-visitors { color: #4A8CFF; font-weight: 600; }
 .counter-box .counter-clients { color: #7BB3FF; font-weight: 600; }
 .back-link { display: inline-block; margin-top: 16px; color: #4A8CFF; text-decoration: none; font-weight: 500; }
+.audit-cta { background: linear-gradient(160deg, rgba(74,140,255,0.15), rgba(123,179,255,0.05)); border: 2px solid rgba(74,140,255,0.4); border-radius: 16px; padding: 22px; margin: 24px 0; text-align: center; }
+.audit-cta h3 { color: #fff; font-size: 18px; margin-bottom: 8px; }
+.audit-cta p { color: #8A94C8; font-size: 13px; margin-bottom: 14px; }
+.audit-cta a { display: inline-block; background: linear-gradient(135deg, #4A8CFF, #7BB3FF); color: #fff; padding: 10px 24px; border-radius: 30px; font-weight: 700; font-size: 14px; text-decoration: none; box-shadow: 0 4px 15px rgba(74,140,255,0.4); }
 footer { background: linear-gradient(180deg, #060920, #030510); padding: 20px 0; text-align: center; border-top: 1px solid rgba(74,140,255,0.2); margin-top: 20px; }
 footer p { color: #3A406A; font-size: 13px; }
 @media (max-width: 768px) { .section-header h1 { font-size: 26px; } .fintech-grid { grid-template-columns: 1fr 1fr; } }
@@ -57,12 +61,12 @@ footer p { color: #3A406A; font-size: 13px; }
     <div class="logo"><img src="audt_logo.png" alt="€AUDT" /><span class="logo-text">AUDT €AUDT</span></div>
     <nav>
       <a href="index.html">Home</a>
-      <a href="fintech1.html" class="active">Audit Flow</a>
-      <a href="fintech2.html">Deep Audit</a>
-      <a href="trade.html">Trade</a>
+      <a href="audit.html">Submit Audit</a>
+      <a href="fintech1.html" class="active">Use Cases</a>
+      <a href="fintech2.html">Levels</a>
       <a href="ecosystem.html">Ecosystem</a>
     </nav>
-    <a href="buy.html" class="btn-primary">Buy €AUDT</a>
+    <a href="audit.html" class="btn-primary">Submit Audit</a>
   </div>
 </header>
 
@@ -82,6 +86,13 @@ footer p { color: #3A406A; font-size: 13px; }
       <button class="cat-btn" data-cat="nft">NFT</button>
     </div>
     <div class="fintech-grid" id="fintechGrid"></div>
+
+    <div class="audit-cta">
+      <h3>🔍 Ready to audit your token?</h3>
+      <p>Submit your Solana token for audit. Pay €AUDT → get score in 24-48h.</p>
+      <a href="audit.html">Submit Token for Audit →</a>
+    </div>
+
     <div class="counter-box">
       🔍 Visitors: <span class="counter-visitors">2,030</span>
       &nbsp;·&nbsp;
