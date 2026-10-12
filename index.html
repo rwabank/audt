@@ -4,24 +4,17 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Audit Token (€AUDT) — Audit Layer of AviaTrust</title>
-<meta name="description" content="Audit Token on Solana. Working unit for on-chain token audits. €0.01 → target ×100." />
+<meta name="description" content="Audit Token on Solana. On-chain token audits for any Solana project. €0.01 → target ×100." />
 <link rel="icon" href="audt_logo.png" />
 <link rel="stylesheet" href="ai-agent.css" />
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body {
-  font-family: 'Segoe UI', system-ui, sans-serif;
-  background: radial-gradient(ellipse at top, #0F1A3D 0%, #0A0E27 50%, #060920 100%);
-  color: #E0E6FF; line-height: 1.6; overflow-x: hidden;
-  padding-top: 130px; padding-bottom: 60px;
-}
+body { font-family: 'Segoe UI', system-ui, sans-serif; background: radial-gradient(ellipse at top, #0F1A3D 0%, #0A0E27 50%, #060920 100%); color: #E0E6FF; line-height: 1.6; overflow-x: hidden; padding-top: 130px; padding-bottom: 60px; }
 .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-
 .orb { position: fixed; border-radius: 50%; pointer-events: none; filter: blur(80px); opacity: 0.4; z-index: 0; }
 .orb-1 { width: 400px; height: 400px; background: #4A8CFF; top: 10%; left: -100px; }
 .orb-2 { width: 350px; height: 350px; background: #7BB3FF; bottom: 15%; right: -80px; }
 .orb-3 { width: 250px; height: 250px; background: #4A8CFF; top: 50%; left: 40%; opacity: 0.2; }
-
 .ticker { position: fixed; left: 0; width: 100%; z-index: 1000; background: rgba(10, 14, 39, 0.95); border-top: 1px solid #1E2350; border-bottom: 1px solid #1E2350; overflow: hidden; padding: 6px 0; backdrop-filter: blur(8px); }
 .ticker-top { top: 0; border-bottom: 1px solid rgba(74,140,255,0.4); }
 .ticker-bottom { bottom: 0; border-top: 1px solid rgba(74,140,255,0.4); }
@@ -31,7 +24,6 @@ body {
 .ticker-track .contract-ticker { font-family: 'Courier New', monospace; color: #4A8CFF; background: rgba(74,140,255,0.08); padding: 2px 8px; border-radius: 4px; font-size: 11px; }
 @keyframes tickerScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 .ticker-bottom .ticker-track { animation-duration: 38s; }
-
 header { position: fixed; top: 36px; left: 0; width: 100%; background: rgba(10, 14, 39, 0.92); backdrop-filter: blur(12px); z-index: 900; border-bottom: 1px solid rgba(74,140,255,0.2); padding: 8px 0; }
 .header-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
 .logo { display: flex; align-items: center; gap: 8px; }
@@ -44,12 +36,10 @@ header { position: fixed; top: 36px; left: 0; width: 100%; background: rgba(10, 
 .header-contract .copy-btn:hover { color: #4A8CFF; }
 .header-contract .solscan-link { color: #5A649A; text-decoration: none; font-size: 11px; }
 .header-contract .solscan-link:hover { color: #4A8CFF; }
-
 nav { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
 nav a { color: #8A94C8; text-decoration: none; font-size: 12px; font-weight: 500; transition: 0.3s; }
 nav a:hover { color: #4A8CFF; }
 nav a.active { color: #4A8CFF; border-bottom: 2px solid #4A8CFF; }
-
 .btn-primary { background: linear-gradient(135deg, #4A8CFF 0%, #7BB3FF 100%); color: #fff; padding: 8px 20px; border-radius: 30px; font-weight: 700; text-decoration: none; transition: 0.3s; border: none; cursor: pointer; display: inline-block; font-size: 13px; box-shadow: 0 4px 20px rgba(74,140,255,0.4); }
 .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(74,140,255,0.7); }
 .btn-secondary { background: transparent; color: #4A8CFF; padding: 8px 20px; border-radius: 30px; font-weight: 600; text-decoration: none; border: 1px solid #4A8CFF; transition: 0.3s; display: inline-block; font-size: 13px; }
@@ -58,7 +48,6 @@ nav a.active { color: #4A8CFF; border-bottom: 2px solid #4A8CFF; }
 .btn-outline:hover { border-color: #4A8CFF; color: #fff; }
 .btn-glass { background: rgba(74,140,255, 0.08); backdrop-filter: blur(10px); color: #4A8CFF; padding: 8px 20px; border-radius: 30px; font-weight: 600; text-decoration: none; border: 1px solid rgba(74,140,255,0.3); transition: 0.3s; display: inline-block; font-size: 13px; }
 .btn-glass:hover { background: rgba(74,140,255,0.2); box-shadow: 0 0 25px rgba(74,140,255,0.4); }
-
 .hero { padding: 20px 0 40px; position: relative; z-index: 1; min-height: 70vh; display: flex; align-items: center; background-image: url('audt_hero_bg.png'); background-size: cover; background-position: center; background-attachment: fixed; }
 .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, rgba(10,14,39,0.92) 0%, rgba(74,140,255,0.2) 100%); z-index: -1; }
 .hero-inner { display: flex; align-items: center; gap: 40px; position: relative; z-index: 1; }
@@ -72,7 +61,6 @@ nav a.active { color: #4A8CFF; border-bottom: 2px solid #4A8CFF; }
 .stat-number { display: block; font-size: 24px; font-weight: 700; color: #fff; text-shadow: 0 0 15px rgba(74,140,255,0.5); }
 .stat-label { font-size: 12px; color: #8A94C8; }
 .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
-
 .contract-hero { margin-top: 16px; padding: 8px 16px; background: rgba(26,30,65,0.6); border-radius: 12px; border: 1px solid rgba(74,140,255,0.3); display: inline-flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 12px; font-family: 'Courier New', monospace; }
 .contract-hero .label { color: #5A649A; font-family: 'Segoe UI', sans-serif; }
 .contract-hero .addr { color: #4A8CFF; }
@@ -80,16 +68,13 @@ nav a.active { color: #4A8CFF; border-bottom: 2px solid #4A8CFF; }
 .contract-hero .copy-btn:hover { background: rgba(74,140,255,0.2); }
 .contract-hero .solscan-link { color: #5A649A; text-decoration: none; font-size: 11px; font-family: 'Segoe UI', sans-serif; }
 .contract-hero .solscan-link:hover { color: #fff; }
-
 .hero-visual { flex: 0 0 240px; text-align: center; }
 .hero-coin { width: 240px; height: 240px; border-radius: 50%; object-fit: cover; box-shadow: 0 0 100px rgba(74,140,255,0.7), 0 0 150px rgba(74,140,255,0.4); animation: floatCoin 4s ease-in-out infinite; }
 @keyframes floatCoin { 0%, 100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-15px) rotate(5deg); } }
-
 .video-section { padding: 60px 0; position: relative; z-index: 1; }
 .video-wrapper { max-width: 900px; margin: 0 auto; border-radius: 20px; overflow: hidden; border: 2px solid rgba(74,140,255,0.4); box-shadow: 0 20px 60px rgba(74,140,255,0.3); transition: 0.3s; }
 .video-wrapper:hover { box-shadow: 0 20px 80px rgba(74,140,255,0.6); transform: translateY(-4px); border-color: #4A8CFF; }
 .video-wrapper video { width: 100%; display: block; }
-
 .quick-buy { max-width: 700px; margin: 0 auto 30px; background: linear-gradient(160deg, rgba(26,30,65,0.6) 0%, rgba(15,26,61,0.6) 100%); border: 1px solid rgba(74,140,255,0.3); border-radius: 24px; padding: 28px 32px; backdrop-filter: blur(12px); text-align: center; box-shadow: 0 20px 60px rgba(74,140,255,0.15); }
 .quick-buy h2 { font-size: 28px; margin-bottom: 6px; }
 .quick-buy h2 .highlight { color: #4A8CFF; }
@@ -109,33 +94,37 @@ nav a.active { color: #4A8CFF; border-bottom: 2px solid #4A8CFF; }
 .buy-links-grid a { background: rgba(74,140,255,0.08); border: 1px solid #1E2350; border-radius: 12px; padding: 10px 6px; color: #8A94C8; text-decoration: none; font-size: 11px; transition: 0.3s; text-align: center; }
 .buy-links-grid a:hover { border-color: #4A8CFF; color: #4A8CFF; background: rgba(74,140,255,0.05); }
 .buy-links-grid a .icon { display: block; font-size: 18px; margin-bottom: 2px; }
-
 section { padding: 60px 0; position: relative; z-index: 1; }
 .section-header { text-align: center; margin-bottom: 40px; }
 .section-tag { display: inline-block; background: rgba(74,140,255,0.12); color: #4A8CFF; padding: 4px 16px; border-radius: 20px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; border: 1px solid rgba(74,140,255,0.2); }
 .section-header h2 { font-size: 34px; font-weight: 700; margin: 8px 0; }
 .section-header h2 .highlight { color: #4A8CFF; }
 .section-header p { color: #8A94C8; max-width: 600px; margin: 0 auto; font-size: 15px; }
-
 .glass-card { background: linear-gradient(160deg, rgba(26, 30, 65, 0.5) 0%, rgba(15, 26, 61, 0.5) 100%); backdrop-filter: blur(12px); border: 1px solid rgba(74,140,255,0.15); border-radius: 20px; padding: 24px 24px; transition: 0.4s; }
 .glass-card:hover { border-color: rgba(74,140,255,0.4); transform: translateY(-4px); box-shadow: 0 20px 40px rgba(74,140,255,0.15); }
-
 .about-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
 .about-card { text-align: center; padding: 24px; }
 .about-icon { font-size: 36px; margin-bottom: 8px; filter: drop-shadow(0 0 15px rgba(74,140,255,0.6)); }
 .about-card h3 { font-size: 17px; margin-bottom: 6px; color: #fff; }
 .about-card p { font-size: 13px; color: #8A94C8; }
-
 .rwa-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
 .rwa-card { background: linear-gradient(160deg, rgba(26,30,65,0.5), rgba(15,26,61,0.5)); border: 1px solid rgba(74,140,255,0.15); border-radius: 16px; padding: 22px 18px; text-align: center; transition: 0.3s; }
 .rwa-card:hover { border-color: #4A8CFF; transform: translateY(-4px); box-shadow: 0 15px 30px rgba(74,140,255,0.2); }
 .rwa-card .rwa-icon { font-size: 30px; margin-bottom: 6px; filter: drop-shadow(0 0 12px rgba(74,140,255,0.6)); }
 .rwa-card h4 { color: #fff; font-size: 15px; }
 .rwa-card p { color: #8A94C8; font-size: 12px; margin-top: 4px; }
-
 .image-block { max-width: 900px; margin: 30px auto; text-align: center; }
 .image-block img { max-width: 100%; border-radius: 20px; border: 1px solid rgba(74,140,255,0.2); box-shadow: 0 10px 60px rgba(74,140,255,0.2); }
-
+/* CTA AUDIT */
+.cta-audit { max-width: 900px; margin: 40px auto; background: linear-gradient(160deg, rgba(74,140,255,0.15), rgba(123,179,255,0.05)); border: 2px solid rgba(74,140,255,0.5); border-radius: 24px; padding: 40px 32px; text-align: center; box-shadow: 0 20px 60px rgba(74,140,255,0.3); }
+.cta-audit h2 { font-size: 32px; color: #fff; margin-bottom: 12px; }
+.cta-audit h2 .highlight { color: #4A8CFF; }
+.cta-audit p { color: #E0E6FF; font-size: 16px; margin-bottom: 24px; max-width: 600px; margin-left: auto; margin-right: auto; }
+.cta-audit .cta-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+.cta-audit .btn-cta { background: linear-gradient(135deg, #4A8CFF 0%, #7BB3FF 100%); color: #fff; padding: 16px 36px; border-radius: 30px; font-weight: 700; font-size: 16px; text-decoration: none; box-shadow: 0 8px 30px rgba(74,140,255,0.5); transition: 0.3s; }
+.cta-audit .btn-cta:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(74,140,255,0.8); }
+.cta-audit .btn-cta-outline { background: transparent; color: #4A8CFF; border: 2px solid #4A8CFF; padding: 14px 32px; border-radius: 30px; font-weight: 600; font-size: 15px; text-decoration: none; transition: 0.3s; }
+.cta-audit .btn-cta-outline:hover { background: rgba(74,140,255,0.1); }
 /* ECOSYSTEM TOKENS */
 .token-block-title { text-align: center; font-size: 15px; font-weight: 700; color: #4A8CFF; text-transform: uppercase; letter-spacing: 1.5px; margin: 30px 0 20px; }
 .token-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 30px; }
@@ -149,15 +138,14 @@ section { padding: 60px 0; position: relative; z-index: 1; }
 .token-audt { border-color: rgba(74,140,255,0.7); color: #4A8CFF; box-shadow: 0 0 30px rgba(74,140,255,0.25); }
 .token-escr { border-color: rgba(74,140,255,0.4); color: #4A8CFF; }
 .token-dlct { border-color: rgba(46,204,64,0.4); color: #2ECC40; }
-.token-sblct { border-color: rgba(255,165,0,0.4); color: #FFA500; }
 .token-lump { border-color: rgba(233,30,99,0.4); color: #E91E63; }
+.token-soon { border-color: rgba(138,148,200,0.3); color: #8A94C8; opacity: 0.6; }
 .token-b787 { border-color: rgba(143,175,63,0.4); color: #8FAF3F; }
 .token-a350 { border-color: rgba(181,123,255,0.4); color: #B57BFF; }
 .token-c929 { border-color: rgba(229,72,106,0.4); color: #E5486A; }
 .token-a220 { border-color: rgba(46,204,64,0.4); color: #2ECC40; }
 .token-e195 { border-color: rgba(255,165,0,0.4); color: #FFA500; }
 .token-il96 { border-color: rgba(160,160,160,0.3); color: #A0A0A0; opacity: 0.7; }
-
 footer { background: linear-gradient(180deg, #060920 0%, #030510 100%); padding: 30px 0 16px; position: relative; z-index: 1; border-top: 1px solid rgba(74,140,255,0.2); margin-bottom: 40px; }
 .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
 .footer-brand { display: flex; align-items: center; gap: 8px; }
@@ -170,12 +158,10 @@ footer { background: linear-gradient(180deg, #060920 0%, #030510 100%); padding:
 .footer-social { display: flex; gap: 10px; }
 .footer-social a { color: #8A94C8; text-decoration: none; font-size: 16px; }
 .footer-social a:hover { color: #4A8CFF; }
-
 .footer-counter { text-align: center; padding: 12px 0; border-top: 1px solid rgba(74,140,255,0.15); margin-top: 12px; font-size: 13px; color: #8A94C8; font-family: 'Courier New', monospace; }
 .footer-counter .counter-visitors { color: #4A8CFF; font-weight: 600; }
 .footer-counter .counter-clients { color: #7BB3FF; font-weight: 600; }
 .footer-counter .time { font-size: 10px; color: #3A406A; }
-
 .footer-contract { text-align: center; padding: 10px 0; border-top: 1px solid rgba(74,140,255,0.15); margin-top: 12px; font-size: 12px; color: #5A649A; display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; font-family: 'Courier New', monospace; }
 .footer-contract .addr { color: #4A8CFF; }
 .footer-contract .copy-btn { background: transparent; border: none; color: #5A649A; cursor: pointer; font-size: 12px; font-family: 'Segoe UI', sans-serif; }
@@ -183,7 +169,6 @@ footer { background: linear-gradient(180deg, #060920 0%, #030510 100%); padding:
 .footer-contract .solscan-link { color: #5A649A; text-decoration: none; font-size: 12px; font-family: 'Segoe UI', sans-serif; }
 .footer-contract .solscan-link:hover { color: #fff; }
 .footer-bottom { text-align: center; padding-top: 12px; border-top: 1px solid rgba(74,140,255,0.15); margin-top: 12px; font-size: 11px; color: #3A406A; }
-
 @media (max-width: 768px) {
   body { padding-top: 180px; }
   header { top: 34px; padding: 6px 0; }
@@ -206,6 +191,8 @@ footer { background: linear-gradient(180deg, #060920 0%, #030510 100%); padding:
   section { padding: 30px 0; }
   .footer-inner { flex-direction: column; text-align: center; }
   .footer-contract { font-size: 10px; flex-direction: column; gap: 4px; }
+  .cta-audit { padding: 24px 16px; }
+  .cta-audit h2 { font-size: 24px; }
 }
 @media (max-width: 480px) {
   .hero h1 { font-size: 26px; }
@@ -231,13 +218,13 @@ footer { background: linear-gradient(180deg, #060920 0%, #030510 100%); padding:
     <span>✦ <span class="highlight-ticker">€0.01</span> → 100× to €1.00</span>
     <span>✦ Token-2022 • 1% Transfer Fee</span>
     <span>✦ Mint/Freeze/LP/Honeypot checks</span>
-    <span>✦ SWIFT • SEPA • CIPS • UPI • PIX</span>
+    <span>✦ Submit audit: audit.html</span>
     <span>🔍 <span class="highlight-ticker">Audit Token (€AUDT)</span> — Audit Layer of AviaTrust • Solana</span>
     <span>✦ Contract: <span class="contract-ticker">4EqVmfTc2ftfdcXCbR95UEsoMdab3WstSj5MEPVW2kqb</span></span>
     <span>✦ <span class="highlight-ticker">€0.01</span> → 100× to €1.00</span>
     <span>✦ Token-2022 • 1% Transfer Fee</span>
     <span>✦ Mint/Freeze/LP/Honeypot checks</span>
-    <span>✦ SWIFT • SEPA • CIPS • UPI • PIX</span>
+    <span>✦ Submit audit: audit.html</span>
   </div>
 </div>
 
@@ -255,12 +242,13 @@ footer { background: linear-gradient(180deg, #060920 0%, #030510 100%); padding:
     </div>
     <nav>
       <a href="index.html" class="active">€AUDT</a>
+      <a href="audit.html">Submit Audit</a>
       <a href="buy.html">Buy</a>
-      <a href="trade.html">Trade</a>
-      <a href="fintech2.html">Audit Flow</a>
+      <a href="fintech1.html">Flow</a>
+      <a href="fintech2.html">Levels</a>
       <a href="ecosystem.html">Ecosystem</a>
     </nav>
-    <a href="buy.html" class="btn-primary">Buy €AUDT</a>
+    <a href="audit.html" class="btn-primary">Submit Audit</a>
   </div>
 </header>
 
@@ -277,8 +265,8 @@ footer { background: linear-gradient(180deg, #060920 0%, #030510 100%); padding:
         <div class="stat"><span class="stat-number">€0.01</span><span class="stat-label">Price</span></div>
       </div>
       <div class="hero-actions">
-        <a href="buy.html" class="btn-primary">Buy €AUDT</a>
-        <a href="https://jup.ag/tokens/4EqVmfTc2ftfdcXCbR95UEsoMdab3WstSj5MEPVW2kqb" target="_blank" class="btn-outline">Jupiter</a>
+        <a href="audit.html" class="btn-primary">Submit Token for Audit</a>
+        <a href="buy.html" class="btn-outline">Buy €AUDT</a>
         <a href="https://solscan.io/token/4EqVmfTc2ftfdcXCbR95UEsoMdab3WstSj5MEPVW2kqb" target="_blank" class="btn-glass">Solscan</a>
       </div>
       <div class="contract-hero">
@@ -290,6 +278,20 @@ footer { background: linear-gradient(180deg, #060920 0%, #030510 100%); padding:
     </div>
     <div class="hero-visual">
       <img src="audt_coin.png" alt="€AUDT Coin" class="hero-coin" onerror="this.onerror=null;this.src='audt_logo.png';" />
+    </div>
+  </div>
+</section>
+
+<!-- CTA AUDIT -->
+<section>
+  <div class="container">
+    <div class="cta-audit">
+      <h2>Ready to <span class="highlight">audit</span> your token?</h2>
+      <p>Any Solana project can submit for audit. Pay €AUDT → email us proof → get score 0-100 in 24-48 hours.</p>
+      <div class="cta-buttons">
+        <a href="audit.html" class="btn-cta">🔍 Submit Token for Audit</a>
+        <a href="fintech2.html" class="btn-cta-outline">See Audit Levels →</a>
+      </div>
     </div>
   </div>
 </section>
@@ -373,29 +375,33 @@ footer { background: linear-gradient(180deg, #060920 0%, #030510 100%); padding:
       <div class="rwa-card glass-card"><div class="rwa-icon">🍯</div><h4>Honeypot</h4><p>Can you actually sell?</p></div>
     </div>
     <div style="text-align:center; margin-top:16px;">
-      <a href="fintech2.html" class="btn-secondary">Explore Audit Flow →</a>
+      <a href="fintech1.html" class="btn-secondary">Explore Audit Flow →</a>
     </div>
   </div>
 </section>
 
-<!-- ===== ECOSYSTEM TOKENS ===== -->
+<!-- ECOSYSTEM -->
 <section id="tokens">
   <div class="container">
     <div class="section-header">
       <span class="section-tag">🌍 AviaTrust Ecosystem</span>
       <h2>All <span class="highlight">Tokens</span></h2>
-      <p>Financial layer and aircraft layer on Solana.</p>
+      <p>Audit layer · Financial layer · Aircraft layer.</p>
     </div>
 
-    <div class="token-block-title">💼 Financial Layer</div>
+    <div class="token-block-title">🔍 Audit Layer</div>
     <div class="token-grid">
       <a href="index.html" class="token-tile token-audt">
         <div class="token-tile-icon">🔍</div>
         <div class="token-tile-symbol">€AUDT</div>
         <div class="token-tile-name">Audit Token</div>
-        <div class="token-tile-desc">Audit layer · You are here</div>
+        <div class="token-tile-desc">You are here</div>
         <div class="token-tile-price">€0.01</div>
       </a>
+    </div>
+
+    <div class="token-block-title">💼 Financial Layer</div>
+    <div class="token-grid">
       <a href="https://aviabank.github.io/escr/" target="_blank" class="token-tile token-escr">
         <div class="token-tile-icon">🔒</div>
         <div class="token-tile-symbol">€ESCR</div>
@@ -410,12 +416,12 @@ footer { background: linear-gradient(180deg, #060920 0%, #030510 100%); padding:
         <div class="token-tile-desc">Trade finance</div>
         <div class="token-tile-price">€0.01</div>
       </a>
-      <a href="https://aviabank.github.io/sblct/" target="_blank" class="token-tile token-sblct">
+      <a href="https://aviabank.github.io/sblct/" target="_blank" class="token-tile token-soon">
         <div class="token-tile-icon">🛡️</div>
         <div class="token-tile-symbol">€SBLCT</div>
         <div class="token-tile-name">Standby LC</div>
-        <div class="token-tile-desc">Guarantee layer</div>
-        <div class="token-tile-price">€0.01</div>
+        <div class="token-tile-desc">Coming soon</div>
+        <div class="token-tile-price">—</div>
       </a>
       <a href="https://aviabank.github.io/lump/" target="_blank" class="token-tile token-lump">
         <div class="token-tile-icon">💼</div>
@@ -481,13 +487,13 @@ footer { background: linear-gradient(180deg, #060920 0%, #030510 100%); padding:
     <span>✦ Audit Layer of AviaTrust</span>
     <span>✦ Solana — 65,000 TPS</span>
     <span>✦ Mint/Freeze/LP/Honeypot checks</span>
-    <span>✦ 365 Days Liquidity Lock</span>
+    <span>✦ Submit: audit.html</span>
     <span>🔍 <span class="highlight-ticker">€AUDT = €0.01</span> • 100× to €1.00</span>
     <span>✦ Contract: <span class="contract-ticker">4EqVmfTc2ftfdcXCbR95UEsoMdab3WstSj5MEPVW2kqb</span></span>
     <span>✦ Audit Layer of AviaTrust</span>
     <span>✦ Solana — 65,000 TPS</span>
     <span>✦ Mint/Freeze/LP/Honeypot checks</span>
-    <span>✦ 365 Days Liquidity Lock</span>
+    <span>✦ Submit: audit.html</span>
   </div>
 </div>
 
@@ -500,12 +506,11 @@ footer { background: linear-gradient(180deg, #060920 0%, #030510 100%); padding:
     </div>
     <div class="footer-links">
       <a href="index.html">€AUDT</a>
-      <a href="fintech1.html">Audit Flow</a>
+      <a href="audit.html">Submit Audit</a>
+      <a href="fintech1.html">Flow</a>
       <a href="ecosystem.html">Ecosystem</a>
-      <a href="https://aviabank.github.io/escr/" target="_blank">€ESCR</a>
-      <a href="https://aviabank.github.io/dlct/" target="_blank">€DLCT</a>
-      <a href="https://aviabank.github.io/sblct/" target="_blank">€SBLCT</a>
       <a href="https://aviabank.github.io/lump/" target="_blank">€LUMP</a>
+      <a href="https://aviabank.github.io/escr/" target="_blank">€ESCR</a>
     </div>
     <div class="footer-social">
       <a href="https://opensea.io/token/solana/4EqVmfTc2ftfdcXCbR95UEsoMdab3WstSj5MEPVW2kqb" target="_blank">🖼️ OpenSea</a>
