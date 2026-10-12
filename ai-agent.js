@@ -6,12 +6,13 @@
 
   var CONTRACT = '4EqVmfTc2ftfdcXCbR95UEsoMdab3WstSj5MEPVW2kqb';
   var POOL = '4N31HndZpyMwayCj7G4As8NUfiPGi1WAmdBVCXRXp2Cu';
+  var SUPPORT_EMAIL = 'aviabanktoken@gmail.com';
 
   var KB = {
     'what': {
       title: 'What is €AUDT?',
       answer: [
-        '**€AUDT (Audit Token)** — the audit layer of the AviaTrust ecosystem on Solana.',
+        '**€AUDT (Audit Token)** — the audit layer of AviaTrust on Solana.',
         '',
         '€AUDT is a **working unit** for on-chain token audits.',
         '',
@@ -27,13 +28,32 @@
         '· Holder Distribution',
         '· Honeypot risk',
         '',
-        '**Three levels:**',
-        '· Basic',
-        '· Standard',
-        '· Deep',
-        '',
         '📄 Contract: `' + CONTRACT + '`',
         '⛓ Chain: Solana (Token-2022, 1% transfer fee)'
+      ].join('\n')
+    },
+    'submit': {
+      title: 'How to submit for audit?',
+      answer: [
+        '**Submit your token for audit:**',
+        '',
+        '**Step 1.** Buy €AUDT on Jupiter',
+        '**Step 2.** Pay €AUDT to our address',
+        '**Step 3.** Email payment hash + contract address',
+        '**Step 4.** Get audit score 0-100 in 24-48h',
+        '',
+        '**Open full instructions:**',
+        '→ https://aviabank.github.io/audt/audit.html',
+        '',
+        '**Email:** ' + SUPPORT_EMAIL,
+        '',
+        '**Payment address:**',
+        '`' + CONTRACT + '`',
+        '',
+        '**Fees:**',
+        '· Level 1 Basic — 1,000 €AUDT',
+        '· Level 2 Standard — 5,000 €AUDT',
+        '· Level 3 Deep — 20,000 €AUDT'
       ].join('\n')
     },
     'buy': {
@@ -66,8 +86,7 @@
         '**Verify on:**',
         '· GeckoTerminal: https://www.geckoterminal.com/solana/pools/' + POOL,
         '· OpenSea: https://opensea.io/token/solana/' + CONTRACT,
-        '',
-        '⚠️ Always verify contract before buying.'
+        '· Solscan: https://solscan.io/token/' + CONTRACT
       ].join('\n')
     },
     'price': {
@@ -85,47 +104,21 @@
         '⚠️ The ×100 is a community-stated target, not a promise.'
       ].join('\n')
     },
-    'audit': {
-      title: 'How does audit work?',
-      answer: [
-        '**€AUDT audit flow:**',
-        '',
-        '**Step 1.** Project pays €AUDT',
-        '**Step 2.** Scanner runs checks:',
-        '· Mint/Freeze Authority',
-        '· LP Lock status',
-        '· Holder Distribution',
-        '· Honeypot detection',
-        '',
-        '**Step 3.** €AUDT burned',
-        '**Step 4.** Project gets score 0-100',
-        '',
-        '**Three levels:**',
-        '· Basic — core checks',
-        '· Standard — + LP lock + honeypot',
-        '· Deep — + Transfer Hook audit',
-        '',
-        '**Why €AUDT is burned:**',
-        '· Makes audit a consumed resource',
-        '· Not a speculative asset',
-        '· Like gas on Ethereum'
-      ].join('\n')
-    },
     'ecosystem': {
       title: 'What is AviaTrust?',
       answer: [
         '**AviaTrust — aviation tokenization ecosystem on Solana.**',
         '',
-        '**Financial layer:**',
+        '**Audit layer:**',
         '· **€AUDT** — Audit Token (you are here)',
-        '· **€ESCR** — Escrow (trust layer)',
-        '· **€DLCT** — Tokenized DLC (trade finance)',
-        '· **€SBLCT** — Standby LC Token (guarantees)',
-        '· **€LUMP** — Lump Sum Token (fixed commission)',
         '',
-        '**Aircraft layer (10 tokens):**',
-        '€B787 · €A350 · €C929 · €A220 · €E195',
-        '€737MAX10 · €FAXX · €F22 · €CRJ900 · €IL96',
+        '**Financial layer:**',
+        '· **€ESCR** — Escrow',
+        '· **€DLCT** — Tokenized Documentary LC',
+        '· **€LUMP** — Lump Sum (fixed commission)',
+        '',
+        '**Aircraft layer:**',
+        '€B787 · €A350 · €C929 · €A220 · €E195 · €IL96',
         '',
         'Built on Solana for speed and low fees.'
       ].join('\n')
@@ -143,8 +136,7 @@
         '**What reduces risk:**',
         '· Mint Authority disabled',
         '· Freeze Authority disabled',
-        '· Utility token of real ecosystem',
-        '· Working unit — not speculative',
+        '· Utility token — working unit',
         '',
         '⚠️ **Not financial advice.** Only invest what you can afford to lose.'
       ].join('\n')
@@ -153,10 +145,10 @@
 
   var SUGGESTIONS = [
     { key: 'what',      label: '🔍 What is €AUDT?' },
+    { key: 'submit',    label: '📧 Submit audit' },
     { key: 'buy',       label: '🛒 How to buy?' },
     { key: 'contract',  label: '🔗 Contract & Pool' },
     { key: 'price',     label: '💰 Price & Target' },
-    { key: 'audit',     label: '⚙️ How audit works' },
     { key: 'ecosystem', label: '🌍 AviaTrust' },
     { key: 'risk',      label: '⚠️ Is it risky?' }
   ];
@@ -185,8 +177,8 @@
       '<div class="avia-messages" id="avia-messages"></div>',
       '<div class="avia-suggestions" id="avia-suggestions"></div>',
       '<div class="avia-external">',
+      '  <a href="audit.html" target="_blank">📧 Submit</a>',
       '  <a href="https://jup.ag/tokens/' + CONTRACT + '" target="_blank">🔄 Jupiter</a>',
-      '  <a href="https://t.me/aviatrust" target="_blank">📱 TG</a>',
       '  <a href="https://x.com/aviatrust" target="_blank">🐦 X</a>',
       '</div>',
       '<div class="avia-footer">Scripted assistant · Not financial advice</div>'
