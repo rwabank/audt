@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>€AUDT — Submit Token for Audit</title>
+<link rel="icon" href="audt_logo.png" />
+<link rel="stylesheet" href="ai-agent.css" />
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Segoe UI', system-ui, sans-serif; background: radial-gradient(ellipse at top, #0F1A3D 0%, #0A0E27 50%, #060920 100%); color: #E0E6FF; line-height: 1.6; padding-top: 80px; padding-bottom: 60px; }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+
+header { position: fixed; top: 0; left: 0; width: 100%; background: rgba(10,14,39,0.92); backdrop-filter: blur(12px); z-index: 100; border-bottom: 1px solid rgba(74,140,255,0.25); padding: 10px 0; }
+.header-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; }
+.logo { display: flex; align-items: center; gap: 8px; }
+.logo img { height: 36px; width: auto; border-radius: 50%; box-shadow: 0 0 15px rgba(74,140,255,0.5); }
+.logo-text { font-size: 20px; font-weight: 700; color: #fff; }
+nav { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+nav a { color: #8A94C8; text-decoration: none; font-size: 12px; font-weight: 500; }
+nav a:hover { color: #4A8CFF; }
+nav a.active { color: #4A8CFF; border-bottom: 2px solid #4A8CFF; }
+.btn-primary { background: linear-gradient(135deg, #4A8CFF 0%, #7BB3FF 100%); color: #fff; padding: 8px 18px; border-radius: 30px; font-weight: 700; text-decoration: none; font-size: 13px; box-shadow: 0 4px 15px rgba(74,140,255,0.4); }
+
+section { padding: 30px 0; }
+.section-header { text-align: center; margin-bottom: 30px; }
+.section-tag { display: inline-block; background: rgba(74,140,255,0.12); color: #4A8CFF; padding: 4px 16px; border-radius: 20px; font-size: 12px; font-weight: 600; text-transform: uppercase; border: 1px solid rgba(74,140,255,0.2); }
+.section-header h1 { font-size: 38px; font-weight: 700; margin: 8px 0; }
+.section-header h1 .highlight { color: #4A8CFF; }
+.section-header p { color: #8A94C8; max-width: 700px; margin: 0 auto; }
+
+/* STEPS */
+.steps-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 30px 0; }
+.step-box { background: linear-gradient(160deg, rgba(26,30,65,0.6), rgba(15,26,61,0.6)); border: 1px solid rgba(74,140,255,0.2); border-radius: 16px; padding: 22px 16px; text-align: center; position: relative; }
+.step-num { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: linear-gradient(135deg, #4A8CFF, #7BB3FF); color: #fff; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; box-shadow: 0 0 15px rgba(74,140,255,0.6); }
+.step-box .step-icon { font-size: 32px; margin: 8px 0; filter: drop-shadow(0 0 12px rgba(74,140,255,0.6)); }
+.step-box h4 { color: #fff; font-size: 14px; margin-bottom: 4px; }
+.step-box p { color: #8A94C8; font-size: 12px; }
+
+/* FORM */
+.form-card { max-width: 700px; margin: 30px auto; background: linear-gradient(160deg, rgba(26,30,65,0.7), rgba(15,26,61,0.7)); border: 1px solid rgba(74,140,255,0.3); border-radius: 24px; padding: 32px; box-shadow: 0 20px 60px rgba(74,140,255,0.15); }
+.form-card h2 { font-size: 24px; margin-bottom: 8px; color: #fff; }
+.form-card .sub { color: #8A94C8; font-size: 14px; margin-bottom: 24px; }
+.form-group { margin-bottom: 18px; }
+.form-group label { display: block; font-size: 13px; color: #E0E6FF; font-weight: 600; margin-bottom: 6px; }
+.form-group label .required { color: #4A8CFF; }
+.form-group input, .form-group select, .form-group textarea {
+  width: 100%; padding: 12px 14px; border-radius: 12px;
+  border: 1px solid #1E2350; background: #060920;
+  color: #fff; font-size: 14px; outline: none;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: #4A8CFF; box-shadow: 0 0 15px rgba(74,140,255,0.2); }
+.form-group textarea { resize: vertical; min-height: 80px; }
+.form-group input::placeholder, .form-group textarea::placeholder { color: #3A406A; }
+.form-hint { font-size: 11px; color: #5A649A; margin-top: 4px; }
+.form-error { font-size: 11px; color: #FF4081; margin-top: 4px; display: none; }
+.form-error.show { display: block; }
+
+.price-info { background: rgba(74,140,255,0.08); border: 1px solid rgba(74,140,255,0.25); border-radius: 12px; padding: 14px; margin-bottom: 18px; font-size: 13px; color: #E0E6FF; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+.price-info .label { color: #8A94C8; }
+.price-info .value { font-weight: 700; color: #4A8CFF; font-size: 16px; }
+
+.form-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
+.btn-send { flex: 1; background: linear-gradient(135deg, #4A8CFF 0%, #7BB3FF 100%); color: #fff; border: none; padding: 14px 24px; border-radius: 30px; font-weight: 700; font-size: 15px; cursor: pointer; transition: 0.3s; box-shadow: 0 4px 20px rgba(74,140,255,0.4); min-width: 200px; }
+.btn-send:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(74,140,255,0.7); }
+.btn-copy { background: transparent; color: #4A8CFF; border: 1px solid #4A8CFF; padding: 14px 24px; border-radius: 30px; font-weight: 600; font-size: 14px; cursor: pointer; transition: 0.3s; }
+.btn-copy:hover { background: rgba(74,140,255,0.1); }
+
+/* PAYMENT BOX */
+.payment-box { max-width: 700px; margin: 20px auto; background: rgba(74,140,255,0.05); border: 1px solid rgba(74,140,255,0.2); border-radius: 16px; padding: 20px; }
+.payment-box h3 { color: #4A8CFF; font-size: 15px; margin-bottom: 10px; }
+.payment-box p { font-size: 13px; color: #8A94C8; margin-bottom: 8px; }
+.payment-box .addr { font-family: 'Courier New', monospace; color: #4A8CFF; font-size: 12px; background: #060920; padding: 8px 12px; border-radius: 8px; word-break: break-all; display: block; margin: 6px 0; }
+
+/* TABLE */
+.table-wrap { max-width: 1100px; margin: 30px auto; overflow-x: auto; border-radius: 16px; border: 1px solid rgba(74,140,255,0.2); }
+table { width: 100%; border-collapse: collapse; background: rgba(26,30,65,0.4); }
+thead { background: rgba(74,140,255,0.15); }
+th { padding: 14px 16px; text-align: left; font-size: 12px; color: #4A8CFF; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700; }
+td { padding: 14px 16px; font-size: 13px; color: #E0E6FF; border-top: 1px solid rgba(74,140,255,0.1); }
+td.mono { font-family: 'Courier New', monospace; font-size: 11px; color: #7BB3FF; word-break: break-all; }
+.badge { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 11px; font-weight: 600; text-transform: uppercase; }
+.badge.pending { background: rgba(255,165,0,0.15); color: #FFA500; }
+.badge.passed { background: rgba(46,204,64,0.15); color: #2ECC40; }
+.badge.failed { background: rgba(229,72,106,0.15); color: #E5486A; }
+
+/* FAQ */
+.faq-item { background: rgba(26,30,65,0.4); border: 1px solid rgba(74,140,255,0.15); border-radius: 14px; padding: 18px 20px; margin-bottom: 12px; }
+.faq-item h4 { color: #fff; font-size: 15px; margin-bottom: 6px; }
+.faq-item p { color: #8A94C8; font-size: 13px; }
+
+/* SUCCESS MESSAGE */
+.success-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(10,14,39,0.95); z-index: 10000; display: none; align-items: center; justify-content: center; padding: 20px; }
+.success-overlay.show { display: flex; }
+.success-box { background: linear-gradient(160deg, rgba(26,30,65,0.95), rgba(15,26,61,0.95)); border: 2px solid #4A8CFF; border-radius: 24px; padding: 40px; max-width: 500px; text-align: center; box-shadow: 0 20px 80px rgba(74,140,255,0.5); }
+.success-box .icon { font-size: 60px; margin-bottom: 16px; }
+.success-box h3 { color: #4A8CFF; font-size: 24px; margin-bottom: 10px; }
+.success-box p { color: #E0E6FF; font-size: 14px; margin-bottom: 20px; line-height: 1.6; }
+.success-box button { background: linear-gradient(135deg, #4A8CFF, #7BB3FF); color: #fff; border: none; padding: 12px 32px; border-radius: 30px; font-weight: 700; cursor: pointer; font-size: 14px; }
+
+.back-link { display: inline-block; margin-top: 30px; color: #4A8CFF; text-decoration: none; font-weight: 500; }
+
+footer { background: linear-gradient(180deg, #060920, #030510); padding: 20px 0; text-align: center; border-top: 1px solid rgba(74,140,255,0.2); margin-top: 40px; }
+footer p { color: #3A406A; font-size: 13px; }
+
+@media (max-width: 900px) {
+  .steps-row { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+  .section-header h1 { font-size: 26px; }
+  .form-card { padding: 20px; }
+  .steps-row { grid-template-columns: 1fr; }
+  .btn-send, .btn-copy { width: 100%; }
+  th, td { padding: 10px 12px; font-size: 12px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container header-inner">
+    <div class="logo"><img src="audt_logo.png" alt="€AUDT" /><span class="logo-text">AUDT €AUDT</span></div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="audit.html" class="active">Submit Audit</a>
+      <a href="fintech1.html">Audit Flow</a>
+      <a href="fintech2.html">Levels</a>
+      <a href="ecosystem.html">Ecosystem</a>
+    </nav>
+    <a href="buy.html" class="btn-primary">Buy €AUDT</a>
+  </div>
+</header>
+
+<section>
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">🔍 Submit for Audit</span>
+      <h1>Get your token <span class="highlight">audited</span></h1>
+      <p>Any Solana project can request an audit. Pay €AUDT → email us proof → get your score. Manual processing within 24-48 hours.</p>
+    </div>
+
+    <!-- STEPS -->
+    <div class="steps-row">
+      <div class="step-box">
+        <div class="step-num">1</div>
+        <div class="step-icon">🔄</div>
+        <h4>Buy €AUDT</h4>
+        <p>On Jupiter</p>
+      </div>
+      <div class="step-box">
+        <div class="step-num">2</div>
+        <div class="step-icon">💸</div>
+        <h4>Pay €AUDT</h4>
+        <p>Send to address below</p>
+      </div>
+      <div class="step-box">
+        <div class="step-num">3</div>
+        <div class="step-icon">📧</div>
+        <h4>Email proof</h4>
+        <p>Hash + contract address</p>
+      </div>
+      <div class="step-box">
+        <div class="step-num">4</div>
+        <div class="step-icon">✅</div>
+        <h4>Get audit</h4>
+        <p>Score 0-100 in 24-48h</p>
+      </div>
+    </div>
+
+    <!-- PAYMENT BOX -->
+    <div class="payment-box">
+      <h3>📜 Payment address (€AUDT on Solana)</h3>
+      <p>Send your audit fee in €AUDT to:</p>
+      <span class="addr">4EqVmfTc2ftfdcXCbR95UEsoMdab3WstSj5MEPVW2kqb</span>
+      <button onclick="navigator.clipboard.writeText('4EqVmfTc2ftfdcXCbR95UEsoMdab3WstSj5MEPVW2kqb'); alert('Copied!')" class="btn-copy" style="margin-top:8px;">📋 Copy address</button>
+
+      <h3 style="margin-top:20px;">💰 Audit fees</h3>
+      <p>· <strong>Level 1 — Basic:</strong> 1,000 €AUDT</p>
+      <p>· <strong>Level 2 — Standard:</strong> 5,000 €AUDT</p>
+      <p>· <strong>Level 3 — Deep:</strong> 20,000 €AUDT</p>
+    </div>
+
+    <!-- FORM -->
+    <div class="form-card">
+      <h2>📧 Submit your audit request</h2>
+      <p class="sub">Fill the form → click Send → email app opens with all data → send to aviabanktoken@gmail.com</p>
+
+      <div class="form-group">
+        <label>Token Contract Address <span class="required">*</span></label>
+        <input type="text" id="contractAddr" placeholder="e.g. 4EqVmfTc2ftfdcXCbR95UEsoMdab3WstSj5MEPVW2kqb" required />
+        <div class="form-hint">Your Solana token mint address (base58, 32-44 characters)</div>
+        <div class="form-error" id="contractError">Please enter a valid Solana address</div>
+      </div>
+
+      <div class="form-group">
+        <label>Your email <span class="required">*</span></label>
+        <input type="email" id="userEmail" placeholder="you@example.com" required />
+        <div class="form-hint">We'll reply to this email</div>
+      </div>
+
+      <div class="form-group">
+        <label>Audit Level <span class="required">*</span></label>
+        <select id="auditLevel" required>
+          <option value="">— Select level —</option>
+          <option value="1|Basic|1000">Level 1 — Basic (1,000 €AUDT)</option>
+          <option value="2|Standard|5000">Level 2 — Standard (5,000 €AUDT)</option>
+          <option value="3|Deep|20000">Level 3 — Deep (20,000 €AUDT)</option>
+        </select>
+      </div>
+
+      <div class="price-info">
+        <span class="label">Amount to pay:</span>
+        <span class="value" id="priceDisplay">— €AUDT</span>
+      </div>
+
+      <div class="form-group">
+        <label>Payment transaction hash <span class="required">*</span></label>
+        <input type="text" id="txHash" placeholder="Paste your €AUDT transaction signature here" required />
+        <div class="form-hint">From Solscan — the transaction where you sent €AUDT to our address</div>
+      </div>
+
+      <div class="form-group">
+        <label>Additional information (optional)</label>
+        <textarea id="notes" placeholder="Project name, website, X/Twitter, anything else you want us to know"></textarea>
+      </div>
+
+      <div class="form-actions">
+        <button class="btn-send" onclick="sendEmail()">📧 Send Audit Request</button>
+        <button class="btn-copy" onclick="copyData()">📋 Copy data</button>
+      </div>
+    </div>
+
+    <!-- AUDITED TOKENS -->
+    <div class="section-header" style="margin-top:60px;">
+      <span class="section-tag">📊 Registry</span>
+      <h2 style="font-size:28px;font-weight:700;color:#fff;margin:8px 0;">Audited Tokens</h2>
+      <p>Tokens that have passed our audit.</p>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Contract</th>
+            <th>Date</th>
+            <th>Level</th>
+            <th>Score</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="auditTable">
+          <tr>
+            <td colspan="6" style="text-align:center;padding:30px;color:#5A649A;">
+              No audits yet. Be the first — submit your token above.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- FAQ -->
+    <div class="section-header" style="margin-top:60px;">
+      <span class="section-tag">❓ FAQ</span>
+      <h2 style="font-size:28px;font-weight:700;color:#fff;margin:8px 0;">Frequent questions</h2>
+    </div>
+
+    <div style="max-width:800px;margin:0 auto;">
+      <div class="faq-item">
+        <h4>How long does the audit take?</h4>
+        <p>24-48 hours after we receive your email with payment proof. Manual review — quality over speed.</p>
+      </div>
+      <div class="faq-item">
+        <h4>What if my token fails the audit?</h4>
+        <p>You receive the full report with issues found. €AUDT is not refunded — the scan was performed. You can fix issues and resubmit.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Can I revoke my audit?</h4>
+        <p>Yes, but the record stays on-chain. Audit status is public — anyone can verify.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Do I need to send €AUDT first, or email first?</h4>
+        <p>Send €AUDT first, then email with the transaction hash. We verify payment, then start the audit.</p>
+      </div>
+      <div class="faq-item">
+        <h4>What checks are performed?</h4>
+        <p>Mint Authority, Freeze Authority, Holder Distribution, LP Lock, Honeypot detection, Transfer Fee analysis. Deep level adds Transfer Hook audit and contract logic review.</p>
+      </div>
+      <div class="faq-item">
+        <h4>Can I submit a token that's not on Solana?</h4>
+        <p>No. €AUDT only audits Solana tokens (SPL and Token-2022).</p>
+      </div>
+    </div>
+
+    <div style="text-align:center;">
+      <a href="index.html" class="back-link">← Back to €AUDT Home</a>
+    </div>
+  </div>
+</section>
+
+<!-- SUCCESS OVERLAY -->
+<div class="success-overlay" id="successOverlay">
+  <div class="success-box">
+    <div class="icon">✅</div>
+    <h3>Request prepared!</h3>
+    <p>Your email app should open with all the data. If it didn't open — copy the data manually and send to:<br /><strong style="color:#4A8CFF;">aviabanktoken@gmail.com</strong></p>
+    <button onclick="closeSuccess()">Close</button>
+  </div>
+</div>
+
+<footer><div class="container"><p>© 2026 AviaTrust. Built on Solana. | €AUDT</p></div></footer>
+
+<script>
+const AUDIT_FEE_ADDRESS = '4EqVmfTc2ftfdcXCbR95UEsoMdab3WstSj5MEPVW2kqb';
+const SUPPORT_EMAIL = 'aviabanktoken@gmail.com';
+
+// Update price on level change
+document.getElementById('auditLevel').addEventListener('change', function() {
+  const val = this.value;
+  if (!val) {
+    document.getElementById('priceDisplay').textContent = '— €AUDT';
+    return;
+  }
+  const parts = val.split('|');
+  document.getElementById('priceDisplay').textContent = parseInt(parts[2]).toLocaleString() + ' €AUDT';
+});
+
+// Validate Solana address
+function isValidSolanaAddress(addr) {
+  if (!addr) return false;
+  if (addr.length < 32 || addr.length > 44) return false;
+  return /^[1-9A-HJ-NP-Za-km-z]+$/.test(addr);
+}
+
+// Build email body
+function buildEmailBody() {
+  const contract = document.getElementById('contractAddr').value.trim();
+  const email = document.getElementById('userEmail').value.trim();
+  const level = document.getElementById('auditLevel').value;
+  const txHash = document.getElementById('txHash').value.trim();
+  const notes = document.getElementById('notes').value.trim();
+
+  if (!level) return null;
+  const parts = level.split('|');
+
+  return [
+    '=== AUDIT REQUEST ===',
+    '',
+    'Token Contract Address:',
+    contract,
+    '',
+    'Contact Email:',
+    email,
+    '',
+    'Audit Level:',
+    'Level ' + parts[0] + ' — ' + parts[1],
+    '',
+    'Amount Paid:',
+    parseInt(parts[2]).toLocaleString() + ' €AUDT',
+    '',
+    'Payment Transaction Hash:',
+    txHash,
+    '',
+    'Additional Information:',
+    notes || '(none)',
+    '',
+    '=== END ==='
+  ].join('\n');
+}
+
+// Copy data button
+function copyData() {
+  const body = buildEmailBody();
+  if (!body) { alert('Please select audit level first.'); return; }
+  navigator.clipboard.writeText(body);
+  alert('✅ Data copied to clipboard!');
+}
+
+// Send email button
+function sendEmail() {
+  const contract = document.getElementById('contractAddr').value.trim();
+  const email = document.getElementById('userEmail').value.trim();
+  const level = document.getElementById('auditLevel').value;
+  const txHash = document.getElementById('txHash').value.trim();
+  const contractError = document.getElementById('contractError');
+
+  contractError.classList.remove('show');
+
+  if (!isValidSolanaAddress(contract)) {
+    contractError.classList.add('show');
+    return;
+  }
+  if (!email || !email.includes('@')) {
+    alert('Please enter a valid email.');
+    return;
+  }
+  if (!level) {
+    alert('Please select audit level.');
+    return;
+  }
+  if (!txHash) {
+    alert('Please paste your payment transaction hash.');
+    return;
+  }
+
+  const body = buildEmailBody();
+  const subject = '[AUDIT REQUEST] ' + contract;
+  const mailto = 'mailto:' + SUPPORT_EMAIL + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+
+  navigator.clipboard.writeText(body).catch(() => {});
+
+  window.location.href = mailto;
+
+  setTimeout(() => {
+    document.getElementById('successOverlay').classList.add('show');
+  }, 800);
+}
+
+function closeSuccess() {
+  document.getElementById('successOverlay').classList.remove('show');
+}
+
+// Make success overlay clickable outside
+document.getElementById('successOverlay').addEventListener('click', function(e) {
+  if (e.target === this) closeSuccess();
+});
+</script>
+
+<script src="counter.js"></script>
+<script src="ai-agent.js"></script>
+</body>
+</html>
